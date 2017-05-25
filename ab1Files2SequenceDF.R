@@ -1,4 +1,4 @@
-ab1Files2SequenceDF <- function(file.directory, basecall.ratio = 0.33, file.type = ".ab1"){
+ab1Files2SequenceDF <- function(file.directory, basecall.ratio = 0.33, file.type = ".ab1", recursive.dir = TRUE){
   
   # check for and install packages if missing----
   if( !require(plyr) ) {install.packages("plyr")}
@@ -14,11 +14,14 @@ ab1Files2SequenceDF <- function(file.directory, basecall.ratio = 0.33, file.type
   
   # clean file info from sequence files names----
   generateSeqFilesInfo <- function(directory, file.type = ".ab1"){
-    file.path <- list.files(directory, recursive = T, full.names = T)
+    file.path <- list.files(directory, recursive = recursive.dir, full.names = T)
     file.path <- file.path[grep(pattern = file.type,x = file.path)]
     
+    file.name <- list.files(directory, recursive = recursive.dir, full.names = F)
+    file.name <- file.name[grep(pattern = file.type,x = file.name)]
+    
     file.info <- t(as.data.frame(
-      strsplit(x = sub(".ab1","",x = file.path),"_"),
+      strsplit(x = sub(".ab1","",x = file.name),"_"),
       stringsAsFactors = F
     ))
     file.info <- cbind.data.frame(file.path,file.info[,c(3:4)],stringsAsFactors = F)
@@ -63,3 +66,5 @@ ab1Files2SequenceDF <- function(file.directory, basecall.ratio = 0.33, file.type
   # output data frame ----
   df
 }
+
+df <- ab1Files2SequenceDF("Sanger/test/")
