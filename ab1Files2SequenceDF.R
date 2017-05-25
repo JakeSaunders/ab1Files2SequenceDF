@@ -1,5 +1,5 @@
 ab1Files2SequenceDF <- function(file.directory, basecall.ratio = 0.33, file.type = ".ab1"){
-
+  
   # check for and install packages if missing----
   if( !require(plyr) ) {install.packages("plyr")}
   if( !require(sangerseqR) ) {
@@ -9,6 +9,7 @@ ab1Files2SequenceDF <- function(file.directory, basecall.ratio = 0.33, file.type
   library(plyr)
   library(sangerseqR)
   
+  # make directory and file variables
   directory <- file.directory
   
   # clean file info from sequence files names----
@@ -57,10 +58,8 @@ ab1Files2SequenceDF <- function(file.directory, basecall.ratio = 0.33, file.type
     basecall.ratio = 0.33
   )
   df <- join(file.info,seqs,by = "file.path")
-
+  
   
   # output data frame ----
   df
 }
-
-
