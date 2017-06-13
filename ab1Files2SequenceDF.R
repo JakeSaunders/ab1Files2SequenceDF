@@ -13,7 +13,7 @@ ab1Files2SequenceDF <- function(file.directory, basecall.ratio = 0.33, file.type
   directory <- file.directory
   
   # clean file info from sequence files names----
-  generateSeqFilesInfo <- function(directory, file.type = ".ab1"){
+  generateSeqFilesInfo <- function(directory, file.type = file.type){
     file.path <- list.files(directory, recursive = recursive.dir, full.names = T)
     file.path <- file.path[grep(pattern = file.type,x = file.path)]
     
@@ -66,5 +66,3 @@ ab1Files2SequenceDF <- function(file.directory, basecall.ratio = 0.33, file.type
   # output data frame ----
   df
 }
-
-df <- ab1Files2SequenceDF("Sanger/test/")
