@@ -24,7 +24,7 @@ Are sequencing files stored in subdirectory.
 ### Examples:
 ab1Files2SequenceDF(file.directory="sangerSeq/")
 
-# if files are in subdirectories 
+#### if files are in subdirectories 
 ab1Files2SequenceDF(file.directory="sangerSeq/", recursive.dir = TRUE)
 
 #### Author(s)
